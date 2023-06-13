@@ -1,0 +1,152 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset1 Cambria Math;}{\f2\fnil\fcharset0 Cambria Math;}}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mmathFont1\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\qc\ul\b\f0\fs40\lang9 BINARY SEARCH ASSIGNMENT\par
+
+\pard\sa200\sl276\slmult1\ulnone\b0\fs22\par
+\b Q-1:- Given a non-negative integer\~`x`, return\~*the square root of*\~`x`\~*rounded down to the nearest integer*. The returned integer should be\~**non-negative**\~as well.\par
+Ans:- \b0 def Sqrt(x):\par
+   \tab\tab  if (x == 0 or x == 1):\par
+       \tab\tab\tab  return x\par
+    \tab\tab s = 1\par
+   \tab\tab  e = x//2\par
+  \tab\tab  while (s <= e):\par
+       \tab\tab\tab  mid = (s + e) // 2\par
+        \tab\tab\tab if (mid*mid == x):\par
+          \tab\tab\tab\tab   return mid\par
+       \tab\tab\tab  if (mid * mid < x):\par
+           \tab\tab\tab\tab  s = mid + 1\par
+           \tab\tab\tab\tab  Result = mid\par
+\tab\tab\tab   else:\par
+           \tab\tab\tab\tab  end = mid-1\par
+    \tab\tab return Result\par
+\b Q-2: A peak element is an element that is strictly greater than its neighbors.\par
+Given a\~0-indexed\~integer array\~`nums`, find a peak element, and return its index. If the array contains multiple peaks, return the index to\~any of the peaks.\par
+You may imagine that\~`nums[-1] = nums[n] = -\f1\u8734?\f0 `. In other words, an element is always considered to be strictly greater than a neighbor that is outside the array.\par
+You must write an algorithm that runs in\~`O(log n)`\~time.\par
+Ans:- \b0 def\f2  \f0 PeakElement\f2 (\f0 nums\f2 ):\f0\par
+\f2        \tab\tab  \f0 left\f2 , \f0 right\f2  = \f0 0\f2 , \f0 len\f2 (\f0 nums\f2 ) - \f0 1\par
+\f2        \tab\tab  \f0 while\f2  \f0 left\f2  < \f0 right\f2 :\f0\par
+\f2            \tab\tab\tab  \f0 mid\f2  = \f0 left\f2  + (\f0 right-left\f2 )// \f0 2\par
+\f2           \tab\tab\tab  \f0 if\f2  \f0 nums\f2 [\f0 mid\f2 ] > \f0 nums\f2 [\f0 mid\f2  + \f0 1\f2 ]:\f0\par
+\f2                \tab\tab\tab\tab  \f0 right\f2  = \f0 mid\par
+\f2             \tab\tab\tab\f0 else\f2 :\f0\par
+\f2                \tab\tab\tab  \tab\f0 left\f2  = \f0 mid\f2  + \f0 1\par
+\f2        \tab\tab   \f0 return\f2  \f0 left\lang9\par
+\b Q-3:- Given an array\~`nums`\~containing\~`n`\~distinct numbers in the range\~`[0, n]`, return\~*the only number in the range that is missing from the array.\par
+Ans:- \b0 def missingNumber(nums):\par
+                     nums.sort()\par
+   \tab       left = 0\par
+    \tab       right = len(nums) - 1\par
+    \tab       while left <= right:\par
+        \tab\tab mid = left + (right - left) // 2\par
+        \tab\tab  if nums[mid] == mid:\par
+         \tab\tab\tab  left = mid + 1\par
+        \tab\tab elif nums[mid] > mid:\par
+            \tab\tab\tab right = mid - 1\par
+        \tab\tab else:\par
+            \tab\tab\tab left = mid + 1\par
+    \tab         return left\par
+\b Q-4:- Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.There is only one repeated number in nums, return this repeated number.You must solve the problem without modifying the array nums and uses only constant extra space\b0 .\b\par
+Ans:- \b0 def findDuplicate(nums):\par
+    \tab\tab slow = nums[0]\par
+    \tab\tab fast = nums[0]\par
+\tab\tab while True:\par
+       \tab\tab\tab  slow = nums[slow]\par
+       \tab `\tab\tab  fast = nums[nums[fast]]\par
+       \tab\tab\tab  if slow == fast:\par
+            \tab\tab\tab\tab break\par
+\tab\tab  fast = nums[0]\par
+\tab\tab while slow != fast:\par
+        \tab\tab\tab slow = nums[slow]\par
+        \tab\tab\tab fast = nums[fast]\par
+\tab\tab  return slow\par
+\tab print(f"Output: \{findDuplicate([1, 3, 4, 2, 2])\}")  ----------2\par
+\tab print(f"Output: \{findDuplicate([3, 1, 3, 4, 2])\}")  ----------3\par
+\b Q-5:- Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must be unique and you may return the result in any order.\par
+Ans:- \b0 def intersection(nums1, nums2):\par
+    \tab\tab nums1_set = set(nums1)\par
+   \tab\tab intersection = []\par
+\tab\tab for num in nums2:\par
+        \tab\tab\tab if num in nums1_set and num not in intersection:\par
+            \tab\tab\tab intersection.append(num)\par
+\tab\tab return intersection\par
+\tab print(f"Output: \{intersection([1, 2, 2, 1], [2, 2])\}") ---------2                 \par
+\tab print(f"Output: \{intersection([4, 9, 5], [9, 4, 9, 8, 4])\}") --------9,4\par
+\b Q-6:- Suppose an array of length n sorted in ascending order is rotated between 1 and n   times. For example, the array nums = [0,1,2,4,5,6,7] might become:\par
+[4,5,6,7,0,1,2] if it was rotated 4 times.\par
+[0,1,2,4,5,6,7] if it was rotated 7 times.\par
+Notice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in the array [a[n-1], a[0], a[1], a[2], ..., a[n-2]].\par
+Given the sorted rotated array nums of unique elements, return the minimum element of this array.\par
+You must write an algorithm that runs in O(log n) time.\par
+Ans:- \b0 def findMin(nums):\par
+   \tab     left = 0\par
+    \tab     right = len(nums) - 1\par
+\tab     while left < right:\par
+       \tab\tab  mid = (left + right) // 2\par
+\tab\tab if nums[mid] > nums[right]:\par
+           \tab\tab\tab  left = mid + 1\par
+        \tab\tab else:\par
+            \tab\tab\tab right = mid\par
+\tab    return nums[left]\par
+print(f"Output: \{findMin([3, 4, 5, 1, 2])\}")  ----------------1     \par
+print(f"Output: \{findMin([4, 5, 6, 7, 0, 1, 2])\}")   ----------0\par
+print(f"Output: \{findMin([11, 13, 15, 17])\}") --------------11\par
+\b Q-7:- Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value.\par
+If target is not found in the array, return [-1, -1].\par
+You must write an algorithm with O(log n) runtime complexity.\par
+Ans:-\b0  def searchRange(nums, target):\par
+    \tab       start = -1\par
+                      end = -1\par
+    \tab       left = 0\par
+   \tab       right = len(nums) - 1\par
+  \tab       while left <= right:\par
+        \tab\tab mid = (left + right) // 2\par
+        \tab\tab  if nums[mid] == target:\par
+            \tab\tab\tab start = mid\par
+            \tab\tab\tab end = mid\par
+            \tab\tab\tab break\par
+       \tab\tab  if nums[mid] < target:\par
+            \tab\tab\tab left = mid + 1\par
+        \tab\tab  else:\par
+            \tab\tab\tab right = mid - 1\par
+    \tab\tab if start == -1:\par
+        \tab\tab          return [-1, -1]\par
+\tab     left = 0\par
+   \tab     right = start - 1\par
+   \tab     while left <= right:\par
+        \tab\tab mid = (left + right) // 2\par
+        \tab\tab if nums[mid] == target:\par
+           \tab\tab              start = mid\par
+                                             right = mid - 1\par
+        \tab\tab else:\par
+           \tab     \tab              left = mid + 1\par
+   \tab    left = end + 1\par
+    \tab    right = len(nums) - 1\par
+     \tab   while left <= right:\par
+       \tab\tab  mid = (left + right) // 2\par
+        \tab\tab  if nums[mid] == target:\par
+            \tab\tab\tab end = mid\par
+           \tab\tab\tab  left = mid + 1\par
+        \tab\tab else:\par
+            \tab\tab\tab right = mid - 1\par
+   \tab      return [start, end]\par
+print(f"Output: \{searchRange([5, 7, 7, 8, 8, 10], 8)\}") ---------[3,4] \par
+print(f"Output: \{searchRange([5, 7, 7, 8, 8, 10], 6)\}") ---------[-1,-1]\par
+print(f"Output: \{searchRange([], 0)\}")---------------------------[-1,-1]\par
+\b Q-8:- Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.\par
+Ans:-\b0 def intersection(nums1, nums2):\par
+   \tab     set1 = set(nums1)\par
+    \tab     set2 = set(nums2)\par
+   \tab     result = set1.intersection(set2)\par
+\tab     return list(result)\par
+nums1 = [1, 2, 2, 1]\par
+nums2 = [2, 2]\par
+intersect = intersection(nums1, nums2)\par
+print("Intersection:", intersect)-----------[2]\par
+\par
+\par
+\par
+\par
+\par
+}
+ 
